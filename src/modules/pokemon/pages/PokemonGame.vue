@@ -5,6 +5,7 @@
   </section>
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
+    <PokemonScore :score="score" />
     <h1 class="m-3">¿Who's that pokemon?</h1>
     <div class="h-20">
       <button
@@ -29,10 +30,11 @@
 import { computed } from 'vue';
 import PokemonOptions from '@pokemon/components/PokemonOptions.vue';
 import PokemonPicture from '@pokemon/components/PokemonPicture.vue';
+import PokemonScore from '@pokemon/components/PokemonScore.vue';
 import { usePokemonGame } from '@pokemon/composables/usePokemonGame';
 import { GameStatus } from '@pokemon/interfaces';
 
 const isPlaying = computed<boolean>(() => gameStatus.value === GameStatus.Playing);
-const { randomPokemon, gameStatus, isLoading, pokemonOptions, checkAnswer, getNextRound } =
+const { score, randomPokemon, gameStatus, isLoading, pokemonOptions, checkAnswer, getNextRound } =
   usePokemonGame();
 </script>
