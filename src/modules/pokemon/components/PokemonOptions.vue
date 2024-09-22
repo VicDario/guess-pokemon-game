@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Pokemon } from '../interfaces';
+import type { Pokemon } from '@pokemon/interfaces';
 
 interface Props {
   options: Pokemon[];
