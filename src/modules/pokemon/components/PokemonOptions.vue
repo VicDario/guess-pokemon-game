@@ -4,7 +4,8 @@
       v-for="{ name, id } in options"
       :key="id"
       @click="$emit('selectedOption', id)"
-      class="capitalize"
+      class="capitalize disabled:shadow-none disabled:bg-gray-100"
+      :disabled="blockSelection"
     >
       {{ name }}
     </button>
@@ -16,6 +17,7 @@ import type { Pokemon } from '../interfaces';
 
 interface Props {
   options: Pokemon[];
+  blockSelection: boolean;
 }
 defineProps<Props>();
 defineEmits<{

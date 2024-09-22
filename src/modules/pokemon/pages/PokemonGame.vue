@@ -10,7 +10,11 @@
       :pokemon-id="randomPokemon.id"
       :show-pokemon="gameStatus !== GameStatus.Playing"
     />
-    <PokemonOptions :options="pokemonOptions" @selected-option="checkAnswer" />
+    <PokemonOptions
+      :options="pokemonOptions"
+      :block-selection="gameStatus !== GameStatus.Playing"
+      @selected-option="checkAnswer"
+    />
   </section>
 </template>
 
