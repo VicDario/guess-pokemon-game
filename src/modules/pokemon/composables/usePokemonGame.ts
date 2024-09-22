@@ -1,12 +1,18 @@
 import { computed, onMounted, ref } from 'vue';
-import { GameStatus, type Pokemon, type PokemonListResponse } from '../interfaces';
-import { pokemonApi } from '../api/pokemonApi';
+import {
+  GameStatus,
+  type Pokemon,
+  type PokemonListResponse,
+  type GameScore,
+} from '@pokemon/interfaces';
+import { pokemonApi } from '@pokemon/api/pokemonApi';
 import confetti from 'canvas-confetti';
 
 export const usePokemonGame = () => {
   const gameStatus = ref<GameStatus>(GameStatus.Playing);
   const pokemons = ref<Pokemon[]>([]);
   const pokemonOptions = ref<Pokemon[]>([]);
+  const score = ref<GameScore>({ score: 0, errors: 0 });
 
   const isLoading = computed<boolean>(() => pokemons.value.length === 0);
   const randomPokemon = computed<Pokemon>(() => {
@@ -42,7 +48,11 @@ export const usePokemonGame = () => {
         spread: 150,
         origin: { y: 0.6 },
       });
-    } else gameStatus.value = GameStatus.Lost;
+      score.value.score++;
+    } else {
+      gameStatus.value = GameStatus.Lost;
+      score.value.errors++;
+    }
   };
 
   onMounted(async () => {
@@ -55,7 +65,7 @@ export const usePokemonGame = () => {
     isLoading,
     pokemonOptions,
     randomPokemon,
-
+    score,
     // Methods
     getNextRound,
     checkAnswer,
