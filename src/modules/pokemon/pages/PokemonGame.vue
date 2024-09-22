@@ -27,10 +27,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import PokemonOptions from '../components/PokemonOptions.vue';
-import PokemonPicture from '../components/PokemonPicture.vue';
-import { usePokemonGame } from '../composables/usePokemonGame';
-import { GameStatus } from '../interfaces';
+import PokemonOptions from '@pokemon/components/PokemonOptions.vue';
+import PokemonPicture from '@pokemon/components/PokemonPicture.vue';
+import { usePokemonGame } from '@pokemon/composables/usePokemonGame';
+import { GameStatus } from '@pokemon/interfaces';
 
 const isPlaying = computed<boolean>(() => gameStatus.value === GameStatus.Playing);
 const { randomPokemon, gameStatus, isLoading, pokemonOptions, checkAnswer, getNextRound } =
